@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Eloquent\Models\AdminUser;
+use App\Http\Controllers\BaseController;
 
-class LoginController extends Controller
+class LoginController extends BaseController
 {
 
     /**
@@ -13,18 +14,22 @@ class LoginController extends Controller
      */
     public function index()
     {
-        /*
-        $user = AdminUser::find(1);
+        return view('login', ['error_msg', []]);
+    }
 
-        $new_user = new AdminUser;
-        $new_user->account = 'guest';
-        $new_user->password = 'guest';
-        $new_user->role = 'member';
-        $new_user->save();
+    /**
+     * ログイン処理
+     */
+    public function login(Request $request)
+    {
 
-        var_dump(get_class($user));
-        var_dump($user->account);
-         */
-        return view('login');
+        if(!$request->has('account')) $this->addError('アカウント名を入力してください');
+        if(!$request->has('password')) $this->addError('パスワードを入力してください');
+
+        if($this->is_error){
+            return view('login', ['error_msg', $this->error_msg]);
+        }
+
+        var_dump($this->error_msg);
     }
 }

@@ -17,4 +17,5 @@ Route::get('/', function () {
 
 //ログイン画面
 Route::get('login', 'LoginController@index');
+Route::post('login', 'LoginController@login');
 

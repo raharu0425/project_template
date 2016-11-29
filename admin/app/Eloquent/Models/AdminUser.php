@@ -11,5 +11,4 @@ class AdminUser extends Model
     //テーブル名
     protected $table = 'admin_user';
 
-
 }
